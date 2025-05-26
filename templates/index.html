@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Crawler Dashboard</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-spider"></i> Web Crawler Dashboard</h1>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalSessions">0</span>
+                    <span class="stat-label">Total Sessions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="totalPages">0</span>
+                    <span class="stat-label">Pages Crawled</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="totalLinks">0</span>
+                    <span class="stat-label">Links Found</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="activeSessions">0</span>
+                    <span class="stat-label">Active Sessions</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Crawler Form -->
+            <section class="crawler-form">
+                <h2><i class="fas fa-play"></i> Start New Crawl</h2>
+                <form id="crawlForm">
+                    <div class="form-group">
+                        <label for="url">Website URL:</label>
+                        <input type="text" id="url" name="url" placeholder="https://example.com" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="maxPages">Max Pages:</label>
+                            <input type="number" id="maxPages" name="maxPages" value="50" min="1" max="1000">
+                        </div>
+                        <div class="form-group">
+                            <label for="delay">Delay (seconds):</label>
+                            <input type="number" id="delay" name="delay" value="1" min="0.1" max="10" step="0.1">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Start Crawling
+                    </button>
+                </form>
+            </section>
+
+            <!-- Status Messages -->
+            <div id="statusMessage" class="status-message hidden"></div>
+
+            <!-- Sessions List -->
+            <section class="sessions-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Crawl Sessions</h2>
+                    <button class="btn btn-secondary" onclick="refreshSessions()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div id="sessionsList" class="sessions-list">
+                    <div class="loading">Loading sessions...</div>
+                </div>
+            </section>
+
+            <!-- Session Details Modal -->
+            <div id="sessionModal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">Session Details</h3>
+                        <button class="close-btn" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="sessionDetails"></div>
+                        <div id="pagesList"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="exportSession()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                        <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>
