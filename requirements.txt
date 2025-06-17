@@ -1,27 +1,5 @@
-
-# Web Crawler Requirements
-# Install with: pip install -r requirements.txt
-
-# Core web scraping
-requests>=2.31.0
-beautifulsoup4>=4.12.0
-lxml>=4.9.0
-
-# Image processing
-Pillow>=10.0.0
-
-# Text analysis
-langdetect>=1.0.9
-textstat>=0.7.3
-
-# Database (SQLite is built into Python, no package needed)
-
-# Optional: For better parsing performance
-html5lib>=1.1
-
-# Optional: For advanced text processing
-nltk>=3.8.1
-
-# Optional: For better HTTP handling
-urllib3>=2.0.0
-certifi>=2023.0.0
+requests
+beautifulsoup4
+langdetect
+textstat
+pillow
