@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import os
 from crawler import WebCrawler
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -77,6 +78,7 @@ def get_session_status(session_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+'''Export Error in this
 @app.route('/api/sessions/<int:session_id>/export', methods=['GET'])
 def export_session_data(session_id):
     """Export session data as JSON"""
@@ -98,7 +100,24 @@ def export_session_data(session_id):
         return jsonify(export_data)
     
     except Exception as e:
+        return jsonify({'error': str(e)}), 500'''
+
+@app.route('/api/sessions/<int:session_id>/export', methods=['GET'])
+def export_session_data(session_id):
+    try:
+        export_path = crawler.export_session_data(session_id, format_type='json')
+
+        if not export_path or not os.path.exists(export_path):
+            return jsonify({'error': 'Export failed or file not found'}), 500
+
+        # Load the exported file and return its JSON content
+        with open(export_path, 'r', encoding='utf-8') as f:
+            return jsonify(json.load(f))
+
+    except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
 
 @app.route('/api/stats', methods=['GET'])
 def get_stats():
