@@ -3,6 +3,9 @@
 
 Spidey is a lightweight, extensible Python-based web crawler built for rapid deployment and real-time data extraction. It supports intelligent link-following, language detection, readability scoring, duplicate content detection, and structured data export — all with a simple SQLite backend.
 
+<img width="1363" height="768" alt="image" src="https://github.com/user-attachments/assets/4dda8e84-e745-449a-a9c4-2a0c15ff9baa" />
+
+
 ---
 
 ## 🚀 Features
